@@ -31,7 +31,7 @@ if DogvCat == "Dogs":
 		#opens link
 		web.open("https://www.crispypompuppies.com/wp-content/uploads/bryce_pomeranian_puppy_03.jpg")
 #Cats
-else if DogvCat == "Cats":
+elif DogvCat == "Cats":
 	print("Cats are pretty cool, but dogs are a bit cooler.")
 	#big vs small cats
 	typecat = input("Do you prefer big or small cats?\n")
@@ -46,10 +46,10 @@ else if DogvCat == "Cats":
 		#opens link
 		web.open("https://i.pinimg.com/originals/3b/ec/06/3bec063ecb6371b24c984b65ce9fdbff.jpg")
 #cows
-else if DogvCat == "Cows":
+elif DogvCat == "Cows":
 	print("Cows are pretty dope.")
 	#what type of cow
-	typecow = input("Would you rather see a really fluffy cow or a really small cow?")
+	typecow = input("Would you rather see a really fluffy cow or a really small cow?\n")
 	#fluffy cow
 	if typecow == "Fluffy":
 		print("Here's a picture of a fluffly cow:")
