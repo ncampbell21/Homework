@@ -46,7 +46,7 @@ else if DogvCat == "Cats":
 		#opens link
 		web.open("https://i.pinimg.com/originals/3b/ec/06/3bec063ecb6371b24c984b65ce9fdbff.jpg")
 #cows
-else if DogVCat == "Cows":
+else if DogvCat == "Cows":
 	print("Cows are pretty dope.")
 	#what type of cow
 	typecow = input("Would you rather see a really fluffy cow or a really small cow?")
