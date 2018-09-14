@@ -6,6 +6,8 @@
 #I could just change it to dayofweek=days[d+2], but I feel like 
 #that's just a workaround
 
+
+#Edit: I just changed all of the division to floored division (Kai recommended this) and the problem is fixed!
 #importing sys
 import sys
 
@@ -18,10 +20,10 @@ y = int(sys.argv[3])
 days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 #operations to get day of week
-y = y -((14-m)/12)
-x = y + (y/4) - (y/100) + (y/400)
-m = m + ((12*((14-m)/12))-2)
-d = (d + x + (31*m)/12)
+y = y -((14-m)//12)
+x = y + (y//4) - (y//100) + (y//400)
+m = m + ((12*((14-m)//12))-2)
+d = (d + x + (31*m)//12)
 d = (d%7)
 
 #get the element from the list dayofweek that corresponds with the 
