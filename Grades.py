@@ -34,6 +34,7 @@ points = [[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9],
 if(num>=0 and num<=5):
 	#got this snippet of code from: https://stackoverflow.com/questions/25398259/finding-the-index-of-an-item-in-a-list-of-lists
 	grade_index = int(([i for i, points in enumerate(points) if num in points][0]))
+	#prints element of grades with same position in list as num did in points
 	print(grades.pop(grade_index))
 #if number isn't between 0 and 5 inclusive
 else:
