@@ -1,4 +1,5 @@
 #Nico Campbell
+#On my honor, I have neither given nor recieved unauthorized aide.
 #Sep 24 2018
 #Description: This is a simple choose your own adventure style game. It features ascii art and some fun illustrations to make it more engaging, too!
 #I wish that this game turned out a bit more in-depth and lasted longer, but I spent a lot of the time focusing on quality over quantity and trying to
