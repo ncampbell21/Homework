@@ -5,6 +5,7 @@
 #to either flag or reveal. If reveal is chosen, the program reveals the spot chosen, and the surrounding numbers if it's a zero. If it's a bomb, 
 #game over. If flag is chosen, the given space is flagged. When spaces are revealed, the program checks to see if the # of flags + unrevealed
 #spaces is equal to the number of bombs, in which case the user has won.
+#Ascii art: https://www.asciiart.eu/, http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 # On my honor, I have neither given nor recieved unauthorized aide. 
 
 
