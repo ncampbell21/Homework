@@ -1,0 +1,61 @@
+from PIL import Image
+
+def get_pixel(image, i, j):
+    #inside image bounds?
+  width, height = image.size
+  if i >= width or j >= height:
+      return None
+    #get pixel
+      pixel = image.getpixel((i, j))
+      return pixel
+#size
+#create image pixel Map
+image = Image.open("House.png")
+width, height = image.size
+pixels = image.load()
+
+# transform to half tones
+for i in range(0, width, 2):
+  for j in range(0, height, 2):
+    # get Pixels
+    p1 = get_pixel(image,i, j)
+    print(p1,type(p1))
+    p2 = get_pixel(image, i, j + 1)
+    p3 = get_pixel(image, i + 1, j)
+    p4 = get_pixel(image, i + 1, j + 1)
+    # transform to grayscale
+    gray1 = (p1[0] * 0.299) + (p1[1] * 0.587) + (p1[2] * 0.114)
+    gray2 = (p2[0] * 0.299) + (p2[1] * 0.587) + (p2[2] * 0.114)
+    gray3 = (p3[0] * 0.299) + (p3[1] * 0.587) + (p3[2] * 0.114)
+    gray4 = (p4[0] * 0.299) + (p4[1] * 0.587) + (p4[2] * 0.114)
+
+    # saturation Percentage
+    sat = (gray1 + gray2 + gray3 + gray4) / 4
+
+    # draw depending on saturation
+    if sat > 223:
+      pixels[i, j]         = (255, 255, 255) # White
+      pixels[i, j + 1]     = (255, 255, 255) # White
+      pixels[i + 1, j]     = (255, 255, 255) # White
+      pixels[i + 1, j + 1] = (255, 255, 255) # White
+    elif sat > 159:
+      pixels[i, j]         = (255, 255, 255) # White
+      pixels[i, j + 1]     = (0, 0, 0)       # Black
+      pixels[i + 1, j]     = (255, 255, 255) # White
+      pixels[i + 1, j + 1] = (255, 255, 255) # White
+    elif sat > 95:
+      pixels[i, j]         = (255, 255, 255) # White
+      pixels[i, j + 1]     = (0, 0, 0)       # Black
+      pixels[i + 1, j]     = (0, 0, 0)       # Black
+      pixels[i + 1, j + 1] = (255, 255, 255) # White
+    elif sat > 32:
+      pixels[i, j]         = (0, 0, 0)       # Black
+      pixels[i, j + 1]     = (255, 255, 255) # White
+      pixels[i + 1, j]     = (0, 0, 0)       # Black
+      pixels[i + 1, j + 1] = (0, 0, 0)       # Black
+    else:
+      pixels[i, j]         = (0, 0, 0)       # Black
+      pixels[i, j + 1]     = (0, 0, 0)       # Black
+      pixels[i + 1, j]     = (0, 0, 0)       # Black
+      pixels[i + 1, j + 1] = (0, 0, 0)       # Black
+
