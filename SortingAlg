@@ -1,0 +1,94 @@
+#11/16/18
+#this code turned out to be a lot more complex than I expected! To be honest, I still can't totally explain it (my mind isn't super sharp right now, either),
+#but I will try. I created a numpy array of zeros (I wasn't sure why I should make it 3d, but every example I found online did this so I made mine 3d too).
+#from here, a gradient is created and then shuffled. Both are saved just so I can see. Now comes the easy part: bubblesort.
+#There's a list of swaps, and then for each instance where a pixel to the right is less than a pixel to its left, they are appended to 
+#swaps and then switched. I also wasn;t sure about the 'tmp' but a lot of sources did it this way so I just went with it.
+# the bottom bit down there is taken from online, as I had no clue as to how I should try and convert this to a gif, video, etc.
+#this code doesn't convert the sorting to a video, but it saves an image every however many steps, so DO NOT run this unless you want way too many images
+#saved to your computer. 
+#On my honor, I have neither given nor recieved unauthorized aide. 
+#sources: https://github.com/burningion/sorting-visualized/blob/master/sortin, https://www.tutorialspoint.com/python/python_sorting_algorithms.htm,https://www.reddit.com/r/pixelsorting/comments/4hozpf/python_script_for_pixel_sorting/, https://scikit-image.org/,
+
+
+
+
+
+from skimage import color #for convert
+from scipy.misc import imsave #for save
+import os # for confusing video stuff
+import numpy as np #arrays!
+
+
+
+#array of zeros
+img = np.zeros((300, 300, 3)) 
+
+
+for i in range(img.shape[1]):
+    img[:,i,:] = i / img.shape[1], 1.0, 1.0
+
+#need HSV for nice gradient
+in_rgb = color.convert_colorspace(img, 'HSV', 'RGB')
+#save 
+imsave('gradient.png', in_rgb)
+
+#randomize
+for i in range(img.shape[0]):
+    np.random.shuffle(img[i,:,:])
+#save
+imsave('randomized.png', color.convert_colorspace(img, 'HSV', 'RGB'))
+
+
+#bubblesort
+def bubble(Z):
+    swaps = [] #list of swaps
+    for i in range(len(Z)):# rows of image (list)
+        for k in range(len(Z) - 1, i, -1): #columns of image (list)
+            if (Z[k] < Z[k - 1]):#if pixel hue is less than pixel hue to left
+                swaps.append([k, k - 1]) #add coords to swap
+                tmp = Z[k]
+                Z[k] = Z[k - 1] #switch
+                Z[k - 1] = tmp #switch
+    return Z, swaps #woo
+
+maxMoves = 0
+moves = [] #list of moves
+
+#use bubble
+for i in range(img.shape[0]): 
+    newMoves = []
+    bubble(list(img[i,:,0])) 
+
+
+    if len(newMoves) > maxMoves: #if over
+        maxMoves = len(newMoves) #redefine max
+    moves.append(newMoves) #append new moves to moves list.
+
+
+
+#below is partially taken from a source, partially adapted to my code
+
+current = 0
+
+def swap_pixels(row, places):
+    tmp = img[row,places[0],:].copy()
+    img[row,places[0],:] = img[row,places[1],:]
+    img[row,places[1],:] = tmp
+
+#below is all from source and adapted to my code. it is the part that saves the images and would turn it into a movie/gif if I added more code.
+# 24 fps, and we want a 5 second gif 24 * 5 = 120 total frames (* 24 5) <-- this is not my comment, this is the bit from my source
+movie_image_step = maxMoves // 120
+movie_image_frame = 0
+
+while current < maxMoves:
+    for i in range(img.shape[0]):
+        if current < len(moves[i]) - 1:
+            swap_pixels(i, moves[i][current])
+
+
+    if current % movie_image_step == 0:
+        imsave('%s/%05d.png' % (args.sorter, movie_image_frame), color.convert_colorspace(img, 'HSV', 'RGB'))
+        movie_image_frame += 1
+    current += 1
+
