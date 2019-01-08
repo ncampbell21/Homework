@@ -34,3 +34,7 @@ for x in range(10000):
 #print results
 print("you lost the car",loss_changed,"times if you changed")
 print("you won the car",wins_changed,"times if you changed")
+
+#so i've run it, and it was not 50/50. It's not what one would initially expect I think, but here's my thinking:
+#you first have a 2/3 chance that you have a penny. When you are told one of the two pennies, it is still most likely that you chose a penny 
+#in the first place, so it makes the most sense to switch to what should be the car.
