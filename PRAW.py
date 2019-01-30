@@ -1,3 +1,7 @@
+#Ncampbell
+#On my honor I have neither given nor recieved unathorized aide.
+#Sources:
+#https://praw.readthedocs.io/en/latest/index.html
 
 
 import praw
