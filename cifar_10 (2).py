@@ -19,6 +19,7 @@ import os
 #https://www.quora.com/What-is-one-hot-encoding-and-when-is-it-used-in-data-science
 #https://kapilddatascience.wordpress.com/2016/11/06/how-cifar-10-data-set-trained-me-to-become-a-deep-learning-scientist/
 #Mike Gao
+#https://www.cs.toronto.edu/~kriz/cifar.html
 
 
 #Even though it might not look like much to someone who knows about machine learning, this project was HARD. Honestly, I spent more time
