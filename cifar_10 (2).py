@@ -202,14 +202,4 @@ x_test = images_test.reshape(images_test.shape[0], -1) # just reshape testing da
 clf = SVC(gamma='auto') #defining clf - variable that represents SVC - I set gamma to auto bcs i didn't want to get into that
 clf.fit(x_train,cls_train) #WOO! time to train :)
 
-matches = 0
-notmatches = 0
-
-for item in clf.predict(x_test[0:100]): #I just predicted w/ 100 of the testing data 
-		if item == item1: #if prediction = label
-			matches +=1 #print the label
-		else:
-			notmatches +=1
-      
-print(matches)
-print(notmatches)
+len([i for i, j in zip(clf.predict(x_test),cls_test) if i == j])
